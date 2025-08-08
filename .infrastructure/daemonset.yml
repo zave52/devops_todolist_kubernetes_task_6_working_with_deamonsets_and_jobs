@@ -23,6 +23,3 @@ spec:
             limits:
               cpu: "100m"
               memory: "100Mi"
-          ports:
-            - containerPort: 80
-              hostPort: 30008
