@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: mateapp-daemon
+  namespace: mateapp
+spec:
+  selector:
+    matchLabels:
+      app: mateapp-daemon
+  template:
+    metadata:
+      labels:
+        app: mateapp-daemon
+    spec:
+      containers:
+        - name: mateapp-daemon
+          image: curlimages/curl
+          command: [ "sh", "-c", "while sleep 5; do curl http://todoapp-service.todoapp.svc.cluster.local.; done" ]
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "100Mi"
+            limits:
+              cpu: "100m"
+              memory: "100Mi"
+          ports:
+            - containerPort: 80
+              hostPort: 30008
