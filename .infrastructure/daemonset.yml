@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: mateapp-daemon
-          image: curlimages/curl
+          image: busyboxplus:curl
           command: [ "sh", "-c", "while sleep 5; do curl http://todoapp-service.todoapp.svc.cluster.local.; done" ]
           resources:
             requests:
